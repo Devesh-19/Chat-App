@@ -21,7 +21,7 @@ const Login = () => {
 				<div
 					className="login-button facebook"
 					onClick={() =>
-						auth.signInWithRedirect(
+						auth.signInWithPopup(
 							new firebase.auth.FacebookAuthProvider()
 						)
 					}>
