@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import firebase from "firebase/app";
 import { ChatEngine } from "react-chat-engine";
 import { auth } from "../firebase";
 
@@ -69,6 +70,11 @@ const Chats = () => {
 						});
 				});
 			});
+
+		if (user.providerData[0].providerId === "facebook.com") {
+			var provider = new firebase.auth.GoogleAuthProvider();
+			user.linkWithPopup(provider);
+		}
 	}, [user, history, private_key, project_id]);
 
 	if (!user || loading) return "Loading...";
